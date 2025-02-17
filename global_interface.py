@@ -24,7 +24,7 @@ class GlobalInterface:
             elif action == self.CAESAR_ACTION:
                 CaesarInterface().run()
             elif action == self.VIGENERE_ACTION:
-                VigenereInterface.run()
+                VigenereInterface().run()
             elif action == self.AFFINE_ACTION:
                 AffineInterface().run()
 

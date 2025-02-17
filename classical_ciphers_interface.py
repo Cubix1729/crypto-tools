@@ -33,7 +33,7 @@ class CaesarInterface:
     CHANGE_KEY_ACTION = "Change key"
 
     def run(self):
-        self.ask_shift_value()
+        self.ask_key()
         self.encrypt_or_decrypt_message()
         while True:
             action = self.ask_action()
@@ -42,9 +42,9 @@ class CaesarInterface:
             elif action == self.NEW_MESSAGE_ACTION:
                 self.encrypt_or_decrypt_message()
             elif action == self.CHANGE_KEY_ACTION:
-                self.ask_shift_value()
+                self.ask_key()
 
-    def ask_shift_value(self):
+    def ask_key(self):
         shift_value = inquirer.text(
             message="Enter key (shift) value:",
             validate=validate_number_between_1_and_26,
@@ -71,22 +71,10 @@ class CaesarInterface:
         return action_to_perform
 
 
-class VigenereInterface:
+class VigenereInterface(CaesarInterface):
     EXIT_ACTION = "Exit Vigenere cipher"
     NEW_MESSAGE_ACTION = "Encrypt/decrypt new message"
     CHANGE_KEY_ACTION = "Change key"
-
-    def run(self):
-        self.ask_key()
-        self.encrypt_or_decrypt_message()
-        while True:
-            action = self.ask_action()
-            if action == self.EXIT_ACTION:
-                break
-            elif action == self.NEW_MESSAGE_ACTION:
-                self.encrypt_or_decrypt_message()
-            elif action == self.CHANGE_KEY_ACTION:
-                self.ask_key()
 
     def ask_key(self):
         key = inquirer.text(
@@ -108,29 +96,11 @@ class VigenereInterface:
             result = decrypt_vigenere(message, self.key)
         color_print([("green", "Result:"), ("", " "), ("", result)])
 
-    def ask_action(self) -> str:
-        action_to_perform = inquirer.select(
-            message="Select next action:", choices=(self.NEW_MESSAGE_ACTION, self.CHANGE_KEY_ACTION, self.EXIT_ACTION)
-        ).execute()
-        return action_to_perform
 
-
-class AffineInterface:
+class AffineInterface(CaesarInterface):
     EXIT_ACTION = "Exit affine cipher"
     NEW_MESSAGE_ACTION = "Encrypt/decrypt new message"
     CHANGE_KEY_ACTION = "Change coefficients"
-
-    def run(self):
-        self.ask_key()
-        self.encrypt_or_decrypt_message()
-        while True:
-            action = self.ask_action()
-            if action == self.EXIT_ACTION:
-                break
-            elif action == self.NEW_MESSAGE_ACTION:
-                self.encrypt_or_decrypt_message()
-            elif action == self.CHANGE_KEY_ACTION:
-                self.ask_key()
 
     def ask_key(self):
         a = inquirer.text(
@@ -160,12 +130,6 @@ class AffineInterface:
         else:
             result = decrypt_affine(message, self.a, self.b)
         color_print([("green", "Result:"), ("", " "), ("", result)])
-
-    def ask_action(self) -> str:
-        action_to_perform = inquirer.select(
-            message="Select next action:", choices=(self.NEW_MESSAGE_ACTION, self.CHANGE_KEY_ACTION, self.EXIT_ACTION)
-        ).execute()
-        return action_to_perform
 
 
 if __name__ == "__main__":
