@@ -29,7 +29,7 @@ class EnigmaInterface:
         "Reflector",
         "Ring settings",
         "Starting positions",
-        "Plugboard"
+        "Plugboard",
     )
 
     def run(self):
@@ -154,14 +154,7 @@ class EnigmaInterface:
     def change_setting(self):
         setting_to_change = inquirer.select(
             message="Select setting to change:",
-            choices=(
-                "Enigma model",
-                "Rotors",
-                "Reflector",
-                "Ring settings",
-                "Starting positions",
-                "Plugboard"
-            )
+            choices=("Enigma model", "Rotors", "Reflector", "Ring settings", "Starting positions", "Plugboard"),
         ).execute()
         match setting_to_change:
             case "Enigma model":
@@ -180,6 +173,7 @@ class EnigmaInterface:
                 self.ask_starting_positions()
             case "Plugboard":
                 self.ask_plugboard(ask_confirmation=False)
+
 
 if __name__ == "__main__":
     EnigmaInterface().run()
