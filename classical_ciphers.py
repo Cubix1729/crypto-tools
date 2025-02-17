@@ -71,6 +71,35 @@ def decrypt_vigenere(text: str, key: str, preserve_non_alphabetic_characters=Fal
     return "".join(ciphertext_letters)
 
 
+def encrypt_beaufort(text: str, key: str, preserve_non_alphabetic_characters=False):
+    """Encrypts text with the Beaufort cipher, using the key given"""
+    if not preserve_non_alphabetic_characters:
+        text = to_upper_case_without_punctuation_or_spaces(text)
+    key = key.upper()
+
+    ciphertext_letters = []
+    key_length = len(key)
+    index = 0
+    for letter in text:
+        if not letter.isalpha():
+            ciphertext_letters.append(letter)
+            continue
+        letter = letter.upper()
+        corresponding_key_letter = key[index % key_length]
+        text_letter_index = letter_index(letter)
+        encrypted_letter = shift_letter(corresponding_key_letter, -text_letter_index + 1)
+        ciphertext_letters.append(encrypted_letter)
+
+        index += 1
+
+    return "".join(ciphertext_letters)
+
+
+def decrypt_beaufort(text: str, key: str, preserve_non_alphabetic_characters=False):
+    """Decrypts text with the Beaufort cipher, using the key given"""
+    return encrypt_beaufort(text, key, preserve_non_alphabetic_characters)
+
+
 def generate_affine_subsitution(a: int, b: int) -> dict:
     """Generate the affine substitution defined by ax + b as a dictionary"""
     if gcd(a, 26) != 1:
