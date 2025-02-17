@@ -16,20 +16,26 @@ class GlobalInterface:
     def run(self):
         font = Figlet(font="slant")
         color_print((["#2acafd", font.renderText("Cryptography")],))
-        while True:
-            action = self.ask_action()
-            if action == self.EXIT_ACTION:
-                break
-            elif action == self.ENIGMA_ACTION:
-                EnigmaInterface().run()
-            elif action == self.CAESAR_ACTION:
-                CaesarInterface().run()
-            elif action == self.VIGENERE_ACTION:
-                VigenereInterface().run()
-            elif action == self.AFFINE_ACTION:
-                AffineInterface().run()
-            elif action == self.IoC_ACTION:
-                IndexOfCoincidenceInterface().run()
+        try:
+            while True:
+                action = self.ask_action()
+                try:
+                    if action == self.EXIT_ACTION:
+                        break
+                    elif action == self.ENIGMA_ACTION:
+                        EnigmaInterface().run()
+                    elif action == self.CAESAR_ACTION:
+                        CaesarInterface().run()
+                    elif action == self.VIGENERE_ACTION:
+                        VigenereInterface().run()
+                    elif action == self.AFFINE_ACTION:
+                        AffineInterface().run()
+                    elif action == self.IoC_ACTION:
+                        IndexOfCoincidenceInterface().run()
+                except KeyboardInterrupt:
+                    pass
+        except KeyboardInterrupt:
+            pass
 
     def ask_action(self):
         action_to_perform = inquirer.select(
