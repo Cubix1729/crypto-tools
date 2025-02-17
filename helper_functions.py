@@ -1,3 +1,4 @@
+from InquirerPy.utils import color_print
 import string
 import re
 
@@ -30,3 +31,8 @@ def shift_letter(letter: str, offset: int) -> str:
 def rotate_rotor(rotor: str, offset: int = 1) -> str:
     """Rotates (shifts) a given rotor by the given offset"""
     return rotor[offset:] + rotor[0:offset]
+
+
+def print_result(result: str):
+    """Print a result, with colour"""
+    color_print([("green", "Result:"), ("", " "), ("", result)])

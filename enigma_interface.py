@@ -2,6 +2,7 @@ from InquirerPy import inquirer
 from InquirerPy.base.control import Choice
 from InquirerPy.utils import color_print
 from enigma_machine import EnigmaI, EnigmaM3, EnigmaM4
+from helper_functions import print_result
 import random
 import string
 import copy
@@ -142,7 +143,7 @@ class EnigmaInterface:
             starting_positions=self.starting_positions,
         )
         encrypted_or_decrypted_message = enigma_machine_to_use.encrypt(message_to_encrypt_or_decrypt)
-        color_print([("green", "Result:"), ("", " "), ("", encrypted_or_decrypted_message)])
+        print_result(encrypted_or_decrypted_message)
 
     def ask_next_action(self) -> str:
         action_to_perform = inquirer.select(

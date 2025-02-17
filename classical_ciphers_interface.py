@@ -13,6 +13,7 @@ from classical_ciphers import (
 )
 from math import gcd
 from index_of_coincidence import index_of_coincidence
+from helper_functions import print_result
 
 
 def validate_number_between_1_and_26(num: str) -> bool:
@@ -64,7 +65,7 @@ class CaesarInterface:
             result = encrypt_caesar(message, self.shift_value)
         else:
             result = decrypt_caesar(message, self.shift_value)
-        color_print([("green", "Result:"), ("", " "), ("", result)])
+        print_result(result)
 
     def ask_action(self) -> str:
         action_to_perform = inquirer.select(
@@ -96,7 +97,7 @@ class VigenereInterface(CaesarInterface):
             result = encrypt_vigenere(message, self.key)
         else:
             result = decrypt_vigenere(message, self.key)
-        color_print([("green", "Result:"), ("", " "), ("", result)])
+        print_result(result)
 
 
 class BeaufortInterface(VigenereInterface):
@@ -105,7 +106,7 @@ class BeaufortInterface(VigenereInterface):
     def encrypt_or_decrypt_message(self):
         message = inquirer.text(message="Enter message to encrypt/decrypt:", multiline=True).execute()
         result = encrypt_beaufort(message, self.key)
-        color_print([("green", "Result:"), ("", " "), ("", result)])
+        print_result(result)
 
 
 class AffineInterface(CaesarInterface):
@@ -140,7 +141,7 @@ class AffineInterface(CaesarInterface):
             result = encrypt_affine(message, self.a, self.b)
         else:
             result = decrypt_affine(message, self.a, self.b)
-        color_print([("green", "Result:"), ("", " "), ("", result)])
+        print_result(result)
 
 
 class IndexOfCoincidenceInterface:
@@ -163,7 +164,7 @@ class IndexOfCoincidenceInterface:
             invalid_message="Index of coincidence isn't defined for an empty text",
         ).execute()
         IoC_calculated = round(index_of_coincidence(text), 5)
-        color_print([("green", "Result:"), ("", " "), ("", str(IoC_calculated))])
+        print_result(str(IoC_calculated))
 
     def ask_action(self):
         action_to_perform = inquirer.select(
