@@ -11,6 +11,7 @@ from classical_ciphers import (
     decrypt_affine,
 )
 from math import gcd
+from index_of_coincidence import index_of_coincidence
 
 
 def validate_number_between_1_and_26(num: str) -> bool:
@@ -130,6 +131,35 @@ class AffineInterface(CaesarInterface):
         else:
             result = decrypt_affine(message, self.a, self.b)
         color_print([("green", "Result:"), ("", " "), ("", result)])
+
+
+class IndexOfCoincidenceInterface:
+    EXIT_ACTION = "Exit index of coincidence calculator"
+    NEW_TEXT_ACTION = "Enter a new text"
+
+    def run(self):
+        while True:
+            self.ask_text()
+            action = self.ask_action()
+            if action == self.EXIT_ACTION:
+                break
+
+    def ask_text(self):
+        text = inquirer.text(
+            message="Enter text to analyse:",
+            multiline=True,
+            mandatory=False,
+            validate=lambda x: len(x) != 0,
+            invalid_message="Index of coincidence isn't defined for an empty text",
+        ).execute()
+        IoC_calculated = round(index_of_coincidence(text), 5)
+        color_print([("green", "Result:"), ("", " "), ("", str(IoC_calculated))])
+
+    def ask_action(self):
+        action_to_perform = inquirer.select(
+            message="Select next action:", choices=(self.NEW_TEXT_ACTION, self.EXIT_ACTION)
+        ).execute()
+        return action_to_perform
 
 
 if __name__ == "__main__":

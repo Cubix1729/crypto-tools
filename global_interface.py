@@ -1,5 +1,5 @@
 from enigma_interface import EnigmaInterface
-from classical_ciphers_interface import CaesarInterface, VigenereInterface, AffineInterface
+from classical_ciphers_interface import CaesarInterface, VigenereInterface, AffineInterface, IndexOfCoincidenceInterface
 from InquirerPy import inquirer
 from InquirerPy.utils import color_print
 from pyfiglet import Figlet
@@ -11,6 +11,7 @@ class GlobalInterface:
     CAESAR_ACTION = "Caesar cipher"
     VIGENERE_ACTION = "Vigenere cipher"
     AFFINE_ACTION = "Affine cipher"
+    IoC_ACTION = "Index of coincidence"
 
     def run(self):
         font = Figlet(font="slant")
@@ -27,6 +28,8 @@ class GlobalInterface:
                 VigenereInterface().run()
             elif action == self.AFFINE_ACTION:
                 AffineInterface().run()
+            elif action == self.IoC_ACTION:
+                IndexOfCoincidenceInterface().run()
 
     def ask_action(self):
         action_to_perform = inquirer.select(
@@ -36,6 +39,7 @@ class GlobalInterface:
                 self.CAESAR_ACTION,
                 self.VIGENERE_ACTION,
                 self.AFFINE_ACTION,
+                self.IoC_ACTION,
                 self.EXIT_ACTION,
             ),
         ).execute()
