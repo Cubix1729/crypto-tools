@@ -156,15 +156,12 @@ class IndexOfCoincidenceInterface:
                 break
 
     def ask_text(self):
-        text = inquirer.text(
-            message="Enter text to analyse:",
-            multiline=True,
-            mandatory=False,
-            validate=lambda x: len(x) != 0,
-            invalid_message="Index of coincidence isn't defined for an empty text",
-        ).execute()
-        IoC_calculated = round(index_of_coincidence(text), 5)
-        print_result(str(IoC_calculated))
+        text = inquirer.text(message="Enter text to analyse:", multiline=True, mandatory=False).execute()
+        try:
+            IoC_calculated = round(index_of_coincidence(text), 5)
+            print_result(str(IoC_calculated))
+        except ZeroDivisionError:
+            color_print((["red", "Index of coincidence is not defined"],))
 
     def ask_action(self):
         action_to_perform = inquirer.select(
