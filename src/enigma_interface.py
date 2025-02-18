@@ -106,7 +106,10 @@ class EnigmaInterface:
         if plugboard_used:
             self.plugboard = {}
             while True:
-                connection_example = random.choice(string.ascii_uppercase) + random.choice(string.ascii_uppercase)
+                connection_example = random.choice(string.ascii_uppercase)
+                alphabet_without_first_plug = list(string.ascii_uppercase)
+                alphabet_without_first_plug.remove(connection_example)
+                connection_example += random.choice(alphabet_without_first_plug)
                 plugboard_connection = inquirer.text(
                     message="Enter plugboard connection",
                     instruction=f"(ex: {connection_example}):",
