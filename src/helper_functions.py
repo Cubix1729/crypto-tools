@@ -35,4 +35,4 @@ def rotate_rotor(rotor: str, offset: int = 1) -> str:
 
 def print_result(result: str):
     """Print a result, with colour"""
-    color_print([("green", "Result:"), ("", " "), ("", result)])
+    color_print([("green", "Result:"), ("", " "), (" #d097ff ", result)])
