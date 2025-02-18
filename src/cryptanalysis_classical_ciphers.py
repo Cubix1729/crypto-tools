@@ -48,7 +48,7 @@ def english_score(text: str) -> float:
 
 
 def break_caesar(text: str) -> tuple:
-    """Takes a ciphertext encrypted with the Caesar cipher and returns (the most probable decryption, its corresponding key)"""
+    """Takes a ciphertext encrypted with the Caesar cipher and returns the most probable key"""
     best_text = ""
     best_key = 0
     best_score = 0
@@ -63,7 +63,7 @@ def break_caesar(text: str) -> tuple:
 
 
 def break_affine(text: str) -> tuple:
-    """Takes a ciphertext encrypted with the affine cipher and returns (the most probable decryption, the corrsponding a coef, the corresponding b coef)"""
+    """Takes a ciphertext encrypted with the affine cipher and returns (the most probable a coefficient, the corresponding b coefficient)"""
     best_text = ""
     best_a = 0
     best_b = 0
@@ -80,11 +80,12 @@ def break_affine(text: str) -> tuple:
     return (best_a, best_b)
 
 
-def key_length(text: str) -> int:
+def key_length(text: str, min_len: int = 2, max_len: int = 8) -> int:
+    """Takes a ciphertext encrypted with the Vigenere cipher and returns the most probable key length used within the interval specified"""
     text = to_upper_case_without_punctuation_or_spaces(text)
     best_key_length = 0
     best_IoC = 0
-    for length in range(2, 10):
+    for length in range(min_len, max_len + 1):
         slices = [""] * length
         for index in range(len(text)):
             letter = text[index]
