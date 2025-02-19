@@ -29,22 +29,25 @@ class GlobalInterface:
             while True:
                 action = self.ask_action()
                 try:
-                    if action == self.EXIT_ACTION:
-                        break
-                    elif action == self.ENIGMA_ACTION:
-                        EnigmaInterface().run()
-                    elif action == self.CAESAR_ACTION:
-                        CaesarInterface().run()
-                    elif action == self.VIGENERE_ACTION:
-                        VigenereInterface().run()
-                    elif action == self.BEAUFORT_ACTION:
-                        BeaufortInterface().run()
-                    elif action == self.AUTOKEY_ACTION:
-                        AutokeyInterface().run()
-                    elif action == self.AFFINE_ACTION:
-                        AffineInterface().run()
-                    elif action == self.IoC_ACTION:
-                        IndexOfCoincidenceInterface().run()
+                    match action:
+                        case self.EXIT_ACTION:
+                            break
+                        case self.EXIT_ACTION:
+                            break
+                        case self.ENIGMA_ACTION:
+                            EnigmaInterface().run()
+                        case self.CAESAR_ACTION:
+                            CaesarInterface().run()
+                        case self.VIGENERE_ACTION:
+                            VigenereInterface().run()
+                        case self.BEAUFORT_ACTION:
+                            BeaufortInterface().run()
+                        case self.AUTOKEY_ACTION:
+                            AutokeyInterface().run()
+                        case self.AFFINE_ACTION:
+                            AffineInterface().run()
+                        case self.IoC_ACTION:
+                            IndexOfCoincidenceInterface().run()
                 except KeyboardInterrupt:
                     pass
         except KeyboardInterrupt:

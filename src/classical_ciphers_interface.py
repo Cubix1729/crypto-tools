@@ -35,19 +35,20 @@ def validate_number_coprime_with_26(num: str) -> bool:
 class CaesarInterface:
     EXIT_ACTION = "Exit caesar cipher"
     NEW_MESSAGE_ACTION = "Encrypt/decrypt new message"
-    CHANGE_KEY_ACTION = "Change key"
+    CHANGE_KEY_ACTION = "Change shift"
 
     def run(self):
         self.ask_key()
         self.encrypt_or_decrypt_message()
         while True:
             action = self.ask_action()
-            if action == self.EXIT_ACTION:
-                break
-            elif action == self.NEW_MESSAGE_ACTION:
-                self.encrypt_or_decrypt_message()
-            elif action == self.CHANGE_KEY_ACTION:
-                self.ask_key()
+            match action:
+                case self.EXIT_ACTION:
+                    break
+                case self.NEW_MESSAGE_ACTION:
+                    self.encrypt_or_decrypt_message()
+                case self.CHANGE_KEY_ACTION:
+                    self.ask_key()
 
     def ask_key(self):
         shift_value = inquirer.text(
@@ -110,6 +111,7 @@ class BeaufortInterface(VigenereInterface):
         result = encrypt_beaufort(message, self.key)
         print_result(result)
 
+
 class AutokeyInterface(VigenereInterface):
     EXIT_ACTION = "Exit autokey cipher"
 
@@ -124,6 +126,7 @@ class AutokeyInterface(VigenereInterface):
         else:
             result = decrypt_autokey(message, self.key)
         print_result(result)
+
 
 class AffineInterface(CaesarInterface):
     EXIT_ACTION = "Exit affine cipher"
