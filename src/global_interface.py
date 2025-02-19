@@ -7,6 +7,7 @@ from classical_ciphers_interface import (
     AffineInterface,
     IndexOfCoincidenceInterface,
 )
+from cryptanalysis_interface import GlobalCryptanalysisInterface
 from InquirerPy import inquirer
 from InquirerPy.utils import color_print
 from pyfiglet import Figlet
@@ -21,6 +22,7 @@ class GlobalInterface:
     AUTOKEY_ACTION = "Autokey cipher"
     AFFINE_ACTION = "Affine cipher"
     IoC_ACTION = "Index of coincidence"
+    CRYPTANALYSIS_ACTION = "Cryptanalysis menu"
 
     def run(self):
         font = Figlet(font="slant")
@@ -30,8 +32,6 @@ class GlobalInterface:
                 action = self.ask_action()
                 try:
                     match action:
-                        case self.EXIT_ACTION:
-                            break
                         case self.EXIT_ACTION:
                             break
                         case self.ENIGMA_ACTION:
@@ -48,6 +48,8 @@ class GlobalInterface:
                             AffineInterface().run()
                         case self.IoC_ACTION:
                             IndexOfCoincidenceInterface().run()
+                        case self.CRYPTANALYSIS_ACTION:
+                            GlobalCryptanalysisInterface().run()
                 except KeyboardInterrupt:
                     pass
         except KeyboardInterrupt:
@@ -64,6 +66,7 @@ class GlobalInterface:
                 self.AUTOKEY_ACTION,
                 self.AFFINE_ACTION,
                 self.IoC_ACTION,
+                self.CRYPTANALYSIS_ACTION,
                 self.EXIT_ACTION,
             ),
         ).execute()
