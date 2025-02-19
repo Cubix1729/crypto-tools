@@ -118,7 +118,8 @@ def find_offset(text: str) -> int:
     return best_key
 
 
-def break_vigenere(text: str, key_length: int):
+def break_vigenere(text: str, key_length: int) -> str:
+    """Takes a ciphertext encrypted with the Vigenere cipher encrypted with a key of length key_length and returns the most probable key"""
     text = to_upper_case_without_punctuation_or_spaces(text)
     key = ""
     for key_letter_index in range(key_length):
