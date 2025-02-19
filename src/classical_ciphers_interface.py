@@ -10,6 +10,8 @@ from classical_ciphers import (
     encrypt_beaufort,
     encrypt_affine,
     decrypt_affine,
+    encrypt_autokey,
+    decrypt_autokey,
 )
 from math import gcd
 from index_of_coincidence import index_of_coincidence
@@ -108,6 +110,20 @@ class BeaufortInterface(VigenereInterface):
         result = encrypt_beaufort(message, self.key)
         print_result(result)
 
+class AutokeyInterface(VigenereInterface):
+    EXIT_ACTION = "Exit autokey cipher"
+
+    def encrypt_or_decrypt_message(self):
+        message = inquirer.text(message="Enter message to encrypt/decrypt:", multiline=True).execute()
+        encrypt_mode = inquirer.select(
+            message="Select action:",
+            choices=(Choice(True, name="Encrypt message"), Choice(False, name="Decrypt message")),
+        ).execute()
+        if encrypt_mode:
+            result = encrypt_autokey(message, self.key)
+        else:
+            result = decrypt_autokey(message, self.key)
+        print_result(result)
 
 class AffineInterface(CaesarInterface):
     EXIT_ACTION = "Exit affine cipher"

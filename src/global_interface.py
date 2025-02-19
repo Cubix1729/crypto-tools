@@ -3,6 +3,7 @@ from classical_ciphers_interface import (
     CaesarInterface,
     VigenereInterface,
     BeaufortInterface,
+    AutokeyInterface,
     AffineInterface,
     IndexOfCoincidenceInterface,
 )
@@ -17,6 +18,7 @@ class GlobalInterface:
     CAESAR_ACTION = "Caesar cipher"
     VIGENERE_ACTION = "Vigenere cipher"
     BEAUFORT_ACTION = "Beaufort cipher"
+    AUTOKEY_ACTION = "Autokey cipher"
     AFFINE_ACTION = "Affine cipher"
     IoC_ACTION = "Index of coincidence"
 
@@ -37,6 +39,8 @@ class GlobalInterface:
                         VigenereInterface().run()
                     elif action == self.BEAUFORT_ACTION:
                         BeaufortInterface().run()
+                    elif action == self.AUTOKEY_ACTION:
+                        AutokeyInterface().run()
                     elif action == self.AFFINE_ACTION:
                         AffineInterface().run()
                     elif action == self.IoC_ACTION:
@@ -54,6 +58,7 @@ class GlobalInterface:
                 self.CAESAR_ACTION,
                 self.VIGENERE_ACTION,
                 self.BEAUFORT_ACTION,
+                self.AUTOKEY_ACTION,
                 self.AFFINE_ACTION,
                 self.IoC_ACTION,
                 self.EXIT_ACTION,
