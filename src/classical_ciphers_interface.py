@@ -192,4 +192,7 @@ class IndexOfCoincidenceInterface:
 if __name__ == "__main__":
     CaesarInterface().run()
     VigenereInterface().run()
+    BeaufortInterface().run()
+    AutokeyInterface().run()
     AffineInterface().run()
+    IndexOfCoincidenceInterface().run()

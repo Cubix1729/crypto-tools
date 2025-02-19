@@ -111,8 +111,8 @@ class EnigmaInterface:
                 alphabet_without_first_plug.remove(connection_example)
                 connection_example += random.choice(alphabet_without_first_plug)
                 plugboard_connection = inquirer.text(
-                    message="Enter plugboard connection",
-                    instruction=f"(ex: {connection_example}):",
+                    message="Enter plugboard connection:",
+                    instruction=f"(ex: {connection_example})",
                     long_instruction="Control-Z to skip and finish entering plugboard configuration",
                     validate=lambda x: x.strip().isalpha() and len(x.strip()) == 2,
                     invalid_message="Invalid input: plugboard connection must consist of two letters",

@@ -126,7 +126,6 @@ def break_vigenere(text: str, key_length: int) -> str:
         corresponding_slice = []
         for index in range(key_letter_index, len(text), key_length):
             corresponding_slice.append(text[index])
-        print(find_offset("".join(corresponding_slice)))
         key_letter_found = letter_from_index(find_offset("".join(corresponding_slice)) + 1)
         key += key_letter_found
     return key
