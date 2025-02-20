@@ -29,5 +29,5 @@ Pressing `Control-C` will exit the current interface.
  - `InquirerPy` used for making the interactive command-line interface
  - `pyfiglet` used for displaying the title at the beginning
 
-`black` was used for code formatting
+`black` was used for code formatting.\
 [dCode](https://www.dcode.fr/en) website was really useful for verifying my results and finding letters/bigrams/trigrams frequencies.
