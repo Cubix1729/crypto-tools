@@ -1,6 +1,6 @@
 # CryptoTools
 
-CryptoTools is a terminal user interface implementing classical ciphers like Caesar or Vigenere cipher, as well as the Enigma machine.
+CryptoTools is a terminal user interface implementing classical ciphers like the Caesar or Vigenere cipher, as well as the Enigma machine.
 It has some cryptanalysis features for breaking simple ciphers.
 
 ![alt text](./images/main_menu_image.png "Main menu")
@@ -21,12 +21,13 @@ It currently supports:
 ## Usage
 
 Run `global_interface.py` in `src` folder.\
-Use the `up` and `down` arrow keys to navigate in the menus and press `enter` to confirm a choice.\
-Pressing `Control-C` exits the current interface.
+Use the `up` and `down` arrow keys to navigate in a menu and press `enter` to confirm a choice.\
+Pressing `Control-C` will exit the current interface.
 
 ## Dependencies
 
  - `InquirerPy` used for making the interactive command-line interface
  - `pyfiglet` used for displaying the title at the beginning
 
+`black` was used for code formatting
 [dCode](https://www.dcode.fr/en) website was really useful for verifying my results and finding letters/bigrams/trigrams frequencies.
