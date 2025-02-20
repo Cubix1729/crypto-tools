@@ -13,7 +13,7 @@ from InquirerPy.utils import color_print
 from pyfiglet import Figlet
 
 
-class GlobalInterface:
+class CryptoToolsInterface:
     EXIT_ACTION = "Exit program"
     ENIGMA_ACTION = "Enigma machine"
     CAESAR_ACTION = "Caesar cipher"
@@ -26,7 +26,7 @@ class GlobalInterface:
 
     def run(self):
         font = Figlet(font="slant")
-        color_print((["#2acafd", font.renderText("Cryptography")],))
+        color_print((["#2acafd", font.renderText("Crypto Tools")],))
         try:
             while True:
                 action = self.ask_action()
@@ -74,4 +74,4 @@ class GlobalInterface:
 
 
 if __name__ == "__main__":
-    GlobalInterface().run()
+    CryptoToolsInterface().run()
