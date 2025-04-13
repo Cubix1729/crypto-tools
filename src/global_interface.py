@@ -10,7 +10,15 @@ from classical_ciphers_interface import (
 from cryptanalysis_interface import GlobalCryptanalysisInterface
 from InquirerPy import inquirer
 from InquirerPy.utils import color_print
-from pyfiglet import Figlet
+
+
+TEXT_LOGO = r"""   ______                 __           ______            __
+  / ____/______  ______  / /_____     /_  __/___  ____  / /____
+ / /   / ___/ / / / __ \/ __/ __ \     / / / __ \/ __ \/ / ___/
+/ /___/ /  / /_/ / /_/ / /_/ /_/ /    / / / /_/ / /_/ / (__  )
+\____/_/   \__, / .___/\__/\____/    /_/  \____/\____/_/____/
+          /____/_/
+"""
 
 
 class CryptoToolsInterface:
@@ -25,8 +33,7 @@ class CryptoToolsInterface:
     CRYPTANALYSIS_ACTION = "Cryptanalysis menu"
 
     def run(self):
-        font = Figlet(font="slant")
-        color_print((["#2acafd", font.renderText("Crypto Tools")],))
+        color_print((["#2acafd", TEXT_LOGO],))
         try:
             while True:
                 action = self.ask_action()
