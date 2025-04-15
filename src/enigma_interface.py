@@ -128,6 +128,7 @@ class EnigmaInterface:
                         continue
                     if key in self.plugboard.keys() or value in self.plugboard.keys():
                         color_print((["red", "Invalid (incompatible) plug"],))
+                        continue
                     self.plugboard[key] = value
                     self.plugboard[value] = key
         else:
