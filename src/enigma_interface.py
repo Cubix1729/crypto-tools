@@ -136,7 +136,7 @@ class EnigmaInterface:
 
     def enter_message(self):
         message_to_encrypt_or_decrypt = inquirer.text(
-            message="Enter message to encrypt or decrypt:", multiline=True, mandatory=False
+            message="Enter message to encrypt or decrypt:", multiline=True
         ).execute()
 
         enigma_machine_to_use = self.enigma_model(
